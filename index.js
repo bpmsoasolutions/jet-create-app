@@ -8,7 +8,6 @@ var shell = require('shelljs')
 var pathExists = require('path-exists')
 var updateNotifier = require('update-notifier')
 var AdmZip = require('adm-zip')
-var Spinner = require('cli-spinner').Spinner;
 
 var pkg = require('./package.json')
 var pwd = path.resolve(__dirname)
@@ -44,35 +43,26 @@ function makeProject(name, verbose, version) {
     }
 
     var zip = new AdmZip(path.resolve(pwd, 'projects/es6-oraclejet.zip'))
-    var spinner = new Spinner('%s Unzipping proyect.');
-    spinner.setSpinnerString(10);
-    spinner.start();
+    console.log('Unzipping proyect.');
 
     zip.getEntries()
         .forEach(function(zipEntry) {
             var dir = zipEntry.entryName
             if (dir.indexOf('__MACOSX') < 0 && dir.indexOf('.git') < 0 && dir.indexOf('.DS_Store') < 0){
                 if (verbose){
-                    process.stdout.write('  - Unzipped : ' + dir + '\n')
+                    console.log('  - Unzipped : ' + dir + '\n')
                 }
                 zip.extractEntryTo(dir, root, true, true)
             }
         });
-    spinner.stop();
-    process.stdout.write('Jet project successfully created at: ' + root + '\n')
+    console.log('Jet project successfully created at: ' + root + '\n')
 
-    spinner = new Spinner('%s Installing dependencies (npm install).');
-    spinner.setSpinnerString(10);
-    spinner.start();
-    
+    console.log('Installing dependencies (npm install).');
     shell.cd(root)
     shell.exec('npm install')
+    console.log('We suggest that you begin by typing:\n')
 
-    spinner.stop();
-
-    process.stdout.write('We suggest that you begin by typing:\n')
-
-    process.stdout.write('cd ' + root + ' npm run dev\n')
+    console.log('cd ' + root + ' npm run dev\n')
 
 
     process.exit()
