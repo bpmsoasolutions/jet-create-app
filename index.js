@@ -11,6 +11,15 @@ var AdmZip = require('adm-zip')
 
 var pkg = require('./package.json')
 var pwd = path.resolve(__dirname)
+var header = "\n"+
+"    _      _                         _                           \n"+
+"   (_) ___| |_    ___ _ __ ___  __ _| |_ ___    __ _ _ __  _ __  \n"+
+"   | |/ _ \\ __|  / __| '__/ _ \\/ _` | __/ _ \\  / _` | '_ \\| '_ \\ \n"+
+"   | |  __/ |_  | (__| | |  __/ (_| | ||  __/ | (_| | |_) | |_) |\n"+
+"  _/ |\\___|\\__|  \\___|_|  \\___|\\__,_|\\__\\___|  \\__,_| .__/| .__/ \n"+
+" |__/                                               |_|   |_|    \n"+
+"\n"+
+"Version: " + pkg.version
 
 /**
  * Arguments:
@@ -18,6 +27,8 @@ var pwd = path.resolve(__dirname)
  *   --verbose  - to print logs while init
  *   --app-type - comming soon
 */
+
+console.log(header)
 
 updateNotifier({pkg}).notify()
 
@@ -63,7 +74,7 @@ function makeProject(name, verbose, version) {
 
     console.log('Installing dependencies (bower install).');
     shell.exec('bower install', {silent: true})
-    
+
     console.log('We suggest that you begin by typing:\n')
 
     console.log('cd ' + root + ' npm run dev\n')
