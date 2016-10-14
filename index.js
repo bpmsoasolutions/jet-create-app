@@ -59,7 +59,11 @@ function makeProject(name, verbose, version) {
 
     console.log('Installing dependencies (npm install).');
     shell.cd(root)
-    shell.exec('npm install')
+    shell.exec('npm install', {silent: true})
+
+    console.log('Installing dependencies (bower install).');
+    shell.exec('bower install', {silent: true})
+    
     console.log('We suggest that you begin by typing:\n')
 
     console.log('cd ' + root + ' npm run dev\n')
