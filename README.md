@@ -7,7 +7,13 @@ Create oracle jet apps with no build configuration.
 ```sh
 npm install -g jet-create-app
 
+// create an app based our es6 generator
 jet-create-app my-app
+cd my-app/
+npm run dev
+
+// create an app based our redux generator
+jet-create-app my-app --type=redux
 cd my-app/
 npm run dev
 
@@ -33,7 +39,12 @@ npm install -g jet-create-app
 To create a new app, run:
 
 ```sh
+// create an app based our es6 generator
 jet-create-app my-app
+cd my-app
+
+// create an app based our redux generator
+jet-create-app my-app --type=redux
 cd my-app
 ```
 
@@ -153,9 +164,11 @@ Currently it is a thin layer on top of many amazing community projects, such as:
 * [RequireJs](http://www.requirejs.org/) To create an hybrid or only-mobile apps
 * [Oracle-Jet](http://oraclejet.org) Oracle Jet and its dependencies
 * [jet-komponents](https://github.com/bpmsoasolutions/jet-komponents)
-* [es6-oraclejet](https://github.com/bpmsoasolutions/es6-oraclejet)
 
-All of them are transitive dependencies of the provided npm package.
+## Base projects included
+
+* [es6-oraclejet](https://github.com/bpmsoasolutions/es6-oraclejet)
+* [es6-oraclejet-redux](https://github.com/bpmsoasolutions/es6-oraclejet-redux)
 
 ## Contributing
 

@@ -39,13 +39,15 @@ if (commands.length === 0) {
         process.exit()
     }
 
-    console.error( 'Usage: jb-create-project <project-directory> [--verbose]' )
+    console.error( 'Usage: jb-create-project <project-directory> [--verbose] [--type=redux]' )
     process.exit(1)
 }
 
-makeProject(commands[0], argv.verbose, argv['app-type'])
+console.log(argv)
 
-function makeProject(name, verbose, version) {
+makeProject(commands[0], argv.verbose, argv['type'])
+
+function makeProject(name, verbose, type) {
     var root = path.resolve(name)
     var appName = path.basename(root)
 
@@ -53,7 +55,9 @@ function makeProject(name, verbose, version) {
         fs.mkdirSync(root);
     }
 
-    var zip = new AdmZip(path.resolve(pwd, 'projects/es6-oraclejet.zip'))
+    let zipPath = (type && type === 'redux') ? 'projects/es6-oraclejet-redux.zip' : 'projects/es6-oraclejet.zip'
+
+    var zip = new AdmZip(path.resolve(pwd, zipPath))
     console.log('Unzipping proyect.');
 
     zip.getEntries()
