@@ -43,8 +43,6 @@ if (commands.length === 0) {
     process.exit(1)
 }
 
-console.log(argv)
-
 makeProject(commands[0], argv.verbose, argv['type'])
 
 function makeProject(name, verbose, type) {
