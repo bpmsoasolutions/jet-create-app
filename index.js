@@ -68,11 +68,14 @@ function makeProject(name, verbose, type) {
                 zip.extractEntryTo(dir, root, true, true)
             }
         });
+
     console.log('Jet project successfully created at: ' + root + '\n')
 
     console.log('Installing dependencies (npm install).');
     shell.cd(root)
-    shell.exec('npm install', {silent: true})
+
+    shell.exec('npm i -D jet-buildtool', {silent: true})
+    shell.exec('npm i -D bower', {silent: true})
 
     console.log('Installing dependencies (bower install).');
     shell.exec('bower install', {silent: true})
@@ -80,7 +83,6 @@ function makeProject(name, verbose, type) {
     console.log('We suggest that you begin by typing:\n')
 
     console.log('cd ' + root + ' npm run dev\n')
-
 
     process.exit()
 }
