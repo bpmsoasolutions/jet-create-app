@@ -61,7 +61,7 @@ function makeProject(name, verbose, type) {
     zip.getEntries()
         .forEach(function(zipEntry) {
             var dir = zipEntry.entryName
-            if (dir.indexOf('__MACOSX') < 0 && dir.indexOf('.git') < 0 && dir.indexOf('.DS_Store') < 0){
+            if (dir.indexOf('__MACOSX') < 0 && dir.indexOf('.git') < 0 || dir.indexOf('.gitignore') > -1 && dir.indexOf('.DS_Store') < 0){
                 if (verbose){
                     console.log('  - Unzipped : ' + dir + '\n')
                 }
